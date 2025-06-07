@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.example.baking.mapper.ContentMapper">
+    <insert id="insert">
+        INSERT INTO content
+        (title,type,category_id,img_url,video_url,content,brief,user_id,create_time,view_count,comment_count)
+        VALUES
+        (#{title},#{type},#{categoryId},#{imgUrl},#{videoUrl},#{content},#{brief},#{userId},#{createTime},0,0)
+    </insert>
+
+    <select id="selectForManagement" resultType="cn.example.baking.pojo.vo.ContentManagementVO">
+        SELECT c.id,c.title,c.brief,c.type,
+               view_count,comment_count,c.create_time,cat.name categoryName
+        FROM content c JOIN category cat ON c.category_id = cat.id
+        WHERE c.user_id=#{userId} AND c.type=#{type}
+        ORDER BY c.create_time DESC
+    </select>
+
+    <delete id="deleteById">
+        DELETE FROM content WHERE id=#{id}
+    </delete>
+
+    <select id="selectForUpdateById" resultType="cn.example.baking.pojo.vo.ContentUpdateVO">
+        SELECT id,title,img_url,video_url,content,type,category_id
+        FROM content
+        WHERE id=#{id}
+    </select>
+
+    <update id="update">
+        UPDATE content
+        <set>
+            <if test="title!=null">title=#{title},</if>
+            <if test="content!=null">content=#{content},</if>
+            <if test="imgUrl!=null">img_url=#{imgUrl},</if>
+            <if test="videoUrl!=null">video_url=#{videoUrl},</if>
+            <if test="brief!=null">brief=#{brief},</if>
+            <if test="categoryId!=null">category_id=#{categoryId},</if>
+            <if test="updateTime!=null">update_time=#{updateTime}</if>
+        </set>
+        WHERE id=#{id}
+    </update>
+
+    <select id="selectForIndex" resultType="cn.example.baking.pojo.vo.ContentIndexVO">
+        SELECT c.id,title,c.img_url,u.img_url userImgUrl,nickname,cat.name categoryName
+        FROM content c
+        JOIN user u ON c.user_id = u.id
+        JOIN category cat ON c.category_id = cat.id
+        WHERE c.type=#{type}
+        <if test="categoryId!=0">AND c.category_id=#{categoryId}</if>
+        LIMIT 0,4
+    </select>
+
+    <select id="selectDetailById" resultType="cn.example.baking.pojo.vo.ContentDetailVO">
+        select c.id,title,content,brief,type,view_count,video_url,c.create_time,
+        nickname,u.img_url userImgUrl,u.id userId
+        from content c JOIN user u ON c.user_id = u.id
+        where c.id=#{id}
+    </select>
+
+    <select id="selectOtherByUserId" resultType="cn.example.baking.pojo.vo.ContentOtherVO">
+        SELECT id,title,img_url,create_time
+        FROM content
+        WHERE user_id=#{id}
+        LIMIT 0,4
+    </select>
+
+    <select id="selectHot" resultType="cn.example.baking.pojo.vo.ContentOtherVO">
+        SELECT id,title,img_url,create_time
+        FROM content
+        ORDER BY view_count DESC
+        LIMIT 0,4
+    </select>
+
+    <update id="updateViewCountById">
+        UPDATE content
+        SET view_count=view_count+1
+        WHERE id=#{id}
+    </update>
+
+    <select id="selectByType" resultType="cn.example.baking.pojo.vo.ContentIndexVO">
+        SELECT c.id,title,c.img_url,u.img_url userImgUrl,nickname,cat.name categoryName
+        FROM content c
+        JOIN user u ON c.user_id = u.id
+        JOIN category cat ON c.category_id = cat.id
+        WHERE c.type=#{type}
+    </select>
+
+    <select id="selectByWd" resultType="cn.example.baking.pojo.vo.ContentIndexVO">
+        SELECT c.id,title,c.img_url,u.img_url userImgUrl,nickname,cat.name categoryName
+        FROM content c
+                 JOIN user u ON c.user_id = u.id
+                 JOIN category cat ON c.category_id = cat.id
+        WHERE c.title LIKE CONCAT('%',#{wd},'%')
+    </select>
+    <select id="selectForAdmin" resultType="cn.example.baking.pojo.vo.ContentAdminVO">
+        SELECT c.id,title,brief,img_url,view_count,comment_count,create_time,cat.name categoryName
+        FROM content c JOIN category cat ON c.category_id=cat.id
+        ORDER BY c.create_time DESC
+    </select>
+</mapper>
+
+
+
+
+
+
+

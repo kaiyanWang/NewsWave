@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.example.baking.mapper.CommentMapper">
+   <insert id="insert">
+       INSERT INTO comment(content, user_id, content_id, create_time)
+       VALUES (#{content},#{userId},#{contentId},#{createTime})
+   </insert>
+
+    <select id="selectByContentId" resultType="cn.example.baking.pojo.vo.CommentVO">
+        SELECT c.id,c.content,c.create_time,nickname,u.img_url userImgUrl
+        FROM comment c JOIN user u ON c.user_id = u.id
+        WHERE c.content_id = #{id}
+        ORDER BY c.create_time DESC
+    </select>
+
+    <update id="updateCommentCountById">
+        UPDATE content
+        SET comment_count = comment_count+1
+        WHERE id=#{contentId}
+    </update>
+</mapper>
+
+
+
+
+
+
+

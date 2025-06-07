@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.example.baking.mapper.BannerMapper">
+   <select id="selectForIndex" resultType="cn.example.baking.pojo.vo.BannerIndexVO">
+       select id,img_url from banner
+   </select>
+
+    <select id="selectForAdmin" resultType="cn.example.baking.pojo.vo.BannerAdminVO">
+        SELECT id,img_url,create_time FROM banner
+    </select>
+
+    <select id="selectUrlById" resultType="string">
+        SELECT img_url FROM banner WHERE id=#{id}
+    </select>
+
+    <delete id="deleteById">
+        DELETE FROM banner WHERE id=#{id}
+    </delete>
+</mapper>
+
+
+
+
+
+
+
