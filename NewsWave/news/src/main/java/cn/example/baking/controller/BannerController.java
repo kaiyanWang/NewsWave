@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/v1/banners")
@@ -30,6 +31,13 @@ public class BannerController {
     @PostMapping("{id}/delete")
     public JsonResult deleteById(@PathVariable Long id){
         bannerService.deleteById(id);
+        return JsonResult.ok();
+    }
+
+    @PostMapping("add")
+    public JsonResult addBanner(@RequestBody Map<String, String> request) {
+        String imgUrl = request.get("imgUrl");
+        bannerService.addBanner(imgUrl);
         return JsonResult.ok();
     }
 }

@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.io.File;
 import java.util.List;
 
@@ -35,5 +36,13 @@ public class BannerService implements IBannerService {
         //拼接完整的路径，并删除对应路径下的轮播图片
         new File(dirPath+imgUrl).delete();
         mapper.deleteById(id);
+    }
+
+    @Override
+    public void addBanner(String imgUrl) {
+        BannerAdminVO banner = new BannerAdminVO();
+        banner.setImgUrl(imgUrl);
+        banner.setCreateTime(new Date());
+        mapper.insert(banner);
     }
 }

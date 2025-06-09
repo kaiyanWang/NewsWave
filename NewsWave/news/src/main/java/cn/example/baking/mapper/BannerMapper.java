@@ -15,4 +15,6 @@ public interface BannerMapper {
     String selectUrlById(Long id);
 
     void deleteById(Long id);
+
+    void insert(BannerAdminVO banner);
 }

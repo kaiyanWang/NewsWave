@@ -18,6 +18,11 @@
     <delete id="deleteById">
         DELETE FROM banner WHERE id=#{id}
     </delete>
+
+    <insert id="insert">
+        INSERT INTO banner (img_url, create_time) VALUES (#{imgUrl}, #{createTime})
+    </insert>
+
 </mapper>
 
 

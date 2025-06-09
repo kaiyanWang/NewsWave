@@ -11,4 +11,6 @@ public interface IBannerService {
     List<BannerAdminVO> listForAdmin();
 
     void deleteById(Long id);
+
+    void addBanner(String imgUrl);
 }

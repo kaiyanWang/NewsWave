@@ -3,6 +3,13 @@
   <div style="width: 1200px;margin: 0 auto;">
     <!--首页轮播图 todo-->
 
+    <!-- 首页轮播图 -->
+    <el-carousel :interval="4000" arrow="always">
+      <el-carousel-item v-for="item in bannerArr" :key="item.id">
+        <img :src="BASE_URL + item.imgUrl" style="width: 100%;">
+      </el-carousel-item>
+    </el-carousel>
+
     <el-row :gutter="10" style="background-color:#fff;margin-top:10px;">
      <el-col :span="3">
        <p style="font-size:28px;margin:10px;">热点</p>
@@ -163,6 +170,15 @@ const selectInfo = (index)=>{
   loadContents(3,index)
 }
 //定义轮播图数组 todo
+const bannerArr = ref([]);
+
+onMounted(() => {
+  axios.get(BASE_URL + "/v1/banners/index").then((response) => {
+    if (response.data.code === 2001) {
+      bannerArr.value = response.data.data;
+    }
+  });
+});
 
 </script>
 
