@@ -1,9 +1,9 @@
 {
-  "name": "baking-web",
+  "name": "wky-news",
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "serve": "vue-cli-service serve --port 9090",
+    "serve": "vue-cli-service serve --port 9091",
     "build": "vue-cli-service build"
   },
   "dependencies": {

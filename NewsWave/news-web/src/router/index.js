@@ -13,6 +13,8 @@ const routes = [
       {path:'/login',component: ()=>import('../views/home/LoginView')},
       {path:'/detail',component: ()=>import('../views/home/DetailView')},
       {path:'/list',component: ()=>import('../views/home/ListView')},
+      {path:'/im',component: ()=>import('../views/Im')},
+      {path:'/im2',component: ()=>import('../views/Im2')},
       {path:'/personal',
         redirect:'/personal/info',
         component: ()=>import('../views/home/PersonalView'),
@@ -33,7 +35,18 @@ const routes = [
       {path:'banner',component:()=>import('../views/admin/BannerView')},
       {path:'content',component:()=>import('../views/admin/ContentView')}
     ]
-  }
+  },
+  {
+    path: '/im',
+    name: 'Im',
+    component: () => import("@/views/Im"),
+  },
+  {
+    path: '/im2',
+    name: 'Im2',
+    component: () => import("@/views/Im2"),
+  },
+
 ]
 
 const router = createRouter({

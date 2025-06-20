@@ -13,12 +13,16 @@
          <el-col :span="10">
             <!--头部导航栏-->
            <el-menu @select="handleSelect" mode="horizontal" active-text-color="orange" style="height:70px;">
+             <el-menu-item index="4">总览</el-menu-item>
              <el-menu-item index="1">热点</el-menu-item>
              <el-menu-item index="2">科技</el-menu-item>
              <el-menu-item index="3">历史</el-menu-item>
-             <el-menu-item index="4">总览</el-menu-item>
+<!--             <el-menu-item index="5">聊天室</el-menu-item>-->
+             <el-menu-item index="6">聊天室2</el-menu-item>
            </el-menu>
+
          </el-col>
+
          <el-col :span="6">
             <!--头部搜索框-->
             <el-input placeholder="请输入您要搜索的内容" v-model="wd" @keydown.enter="search()" style="margin-top: 25px;">
@@ -58,10 +62,12 @@
          </el-col>
         </el-row>
       </el-header>
+
       <el-main>
         <!--中间的部分是可变区域-->
         <router-view/>
       </el-main>
+
       <!--共有的尾部区域-->
       <el-footer style="background-color:rgb(50,50,50);color:#666;height: 300px;padding:50px;text-align: center;">
         <div style="width: 1200px;margin: 0 auto;">
@@ -142,7 +148,14 @@ const handleSelect = (index)=>{
   if (index === '4') {
     // 推荐菜单项跳转到首页
     router.push('/index');
-  }else{
+  } else if (index === '5') {
+    // 聊天室菜单项跳转到聊天室页面
+    router.push('/im');
+  } else if (index === '6') {
+    // 聊天室菜单项跳转到聊天室页面2
+    router.push('/im2');
+  }
+  else{
     router.push('/list?type='+index);
   }
 }

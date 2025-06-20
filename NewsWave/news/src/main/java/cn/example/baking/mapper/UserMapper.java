@@ -10,6 +10,7 @@ import java.util.List;
 @Repository
 public interface UserMapper {
     UserVO selectByUserName(String username);
+
     int insert(User user);
 
     void update(User user);
