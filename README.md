@@ -1,5 +1,5 @@
 # NewsWave
-项目简介：SpringBoot+Vue前后端分离项目。前端通过Vue+ElementUI+axios实现，后端通过SpringBoot+MyBatis实现。项目已经部署：http://www.wky-news.top:9090/index
+项目简介：SpringBoot+Vue前后端分离项目。前端通过Vue+ElementUI+axios实现，后端通过SpringBoot+MyBatis+WebSocket实现。项目已经部署：http://www.wky-news.top:9091
 
 ### 后端项目结构（SpirngBoot+MyBatis）
 
