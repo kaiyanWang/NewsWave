@@ -67,7 +67,7 @@ frontend/
 
 ### Step1 数据库库表建立
 
-打开[sql文件](https://pan.baidu.com/s/18bJWIKcZ7Ow8FKKPrH0ZIw)，复制到SQL窗口，还原数据
+打开sql文件，复制到SQL窗口，还原数据
 
 ### Step2 导入后端项目
 
@@ -77,7 +77,7 @@ frontend/
 
 2、在application.properties中修改数据源用户名和密码
 
-3、将[files](https://pan.baidu.com/s/18bJWIKcZ7Ow8FKKPrH0ZIw)文件放在D:盘根目录下
+3、将files文件放在D:盘根目录下
 
 4、运行启动类
 
